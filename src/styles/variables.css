@@ -1,0 +1,148 @@
+/**
+ * CSS Variables
+ * Design tokens for the Iron Discipline theme
+ */
+
+:root {
+  /* ═══════════════ COLORS ═══════════════ */
+
+  /* Backgrounds */
+  --bg:    #050505;
+  --bg1:   #0B0B0B;
+  --bg2:   #111111;
+  --bg3:   #181818;
+  --bg4:   #202020;
+
+  /* Borders */
+  --b0:    rgba(255, 255, 255, 0.035);
+  --b1:    rgba(255, 255, 255, 0.07);
+  --b2:    rgba(255, 255, 255, 0.13);
+  --b3:    rgba(255, 255, 255, 0.22);
+
+  /* Text */
+  --t0:    #F0F0F0;
+  --t1:    rgba(240, 240, 240, 0.62);
+  --t2:    rgba(240, 240, 240, 0.35);
+  --t3:    rgba(240, 240, 240, 0.16);
+
+  /* Accent: Red */
+  --red:   #8B3A3A;
+  --redl:  #C05050;
+  --redd:  #380E0E;
+
+  /* Accent: Bronze */
+  --brz:   #C4956A;
+  --brzl:  #DBA97A;
+  --brzd:  rgba(196, 149, 106, 0.12);
+
+  /* Accent: Sage */
+  --sag:   #5C7A5C;
+  --sagl:  #78A078;
+  --sagd:  rgba(92, 122, 92, 0.14);
+
+  /* Accent: Lavender */
+  --lav:   #7A6B8A;
+  --lavl:  #9A88B0;
+  --lavd:  rgba(122, 107, 138, 0.14);
+
+  /* ═══════════════ TYPOGRAPHY ═══════════════ */
+
+  /* Font families */
+  --fn:    'Anton', sans-serif;           /* Headlines */
+  --fb:    'DM Sans', sans-serif;         /* Body */
+  --fm:    'JetBrains Mono', monospace;   /* Mono/Data */
+
+  /* Font sizes */
+  --fs-xs:   7px;
+  --fs-sm:   9px;
+  --fs-base: 11px;
+  --fs-md:   13px;
+  --fs-lg:   16px;
+  --fs-xl:   20px;
+  --fs-2xl:  28px;
+  --fs-3xl:  40px;
+
+  /* Letter spacing */
+  --ls-tight:  0.04em;
+  --ls-normal: 0.08em;
+  --ls-wide:   0.12em;
+  --ls-wider:  0.18em;
+
+  /* ═══════════════ SPACING ═══════════════ */
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* ═══════════════ BORDERS ═══════════════ */
+
+  --radius-sm:  6px;
+  --radius-md:  9px;
+  --radius-lg:  12px;
+  --radius-xl:  14px;
+  --radius-full: 99px;
+
+  /* ═══════════════ SHADOWS ═══════════════ */
+
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(196, 149, 106, 0.15);
+
+  /* ═══════════════ ANIMATIONS ═══════════════ */
+
+  --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+
+  /* ═══════════════ Z-INDEX ═══════════════ */
+
+  --z-base:    1;
+  --z-sticky:  100;
+  --z-header:  200;
+  --z-modal:   500;
+  --z-toast:   1000;
+  --z-grain:   9999;
+
+  /* ═══════════════ LAYOUT ═══════════════ */
+
+  --max-width: 480px;
+  --header-height: 60px;
+  --nav-height: 52px;
+  --timer-height: 68px;
+}
+
+/* Dark theme (default) */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Light theme override (future) */
+[data-theme="light"] {
+  --bg: #F5F5F5;
+  --bg1: #FFFFFF;
+  --bg2: #F0F0F0;
+  --bg3: #E5E5E5;
+  --bg4: #DADADA;
+
+  --t0: #1A1A1A;
+  --t1: rgba(26, 26, 26, 0.7);
+  --t2: rgba(26, 26, 26, 0.45);
+  --t3: rgba(26, 26, 26, 0.25);
+
+  --b0: rgba(0, 0, 0, 0.04);
+  --b1: rgba(0, 0, 0, 0.08);
+  --b2: rgba(0, 0, 0, 0.12);
+  --b3: rgba(0, 0, 0, 0.18);
+
+  color-scheme: light;
+}

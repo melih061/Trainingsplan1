@@ -1,0 +1,38 @@
+{
+  "name": "built-by-melih",
+  "version": "1.0.0",
+  "description": "Iron Discipline - Personal Training App by Melih",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js",
+    "format": "prettier --write \"src/**/*.{js,css}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "pwa:generate-icons": "pwa-asset-generator public/icon.svg public/icons --background '#050505' --splash-only false"
+  },
+  "keywords": [
+    "fitness",
+    "training",
+    "workout",
+    "tracker",
+    "pwa",
+    "progressive-web-app"
+  ],
+  "author": "Melih Donmez",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "vite": "^5.2.0",
+    "vite-plugin-pwa": "^0.19.0",
+    "vitest": "^1.4.0",
+    "workbox-window": "^7.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.2",
+    "idb-keyval": "^6.2.1"
+  }
+}
