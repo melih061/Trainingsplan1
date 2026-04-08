@@ -904,13 +904,37 @@ const S={
 };
 
 // ══════════════════════════════════
-// STORAGE
+// STORAGE (mit verbessertem Gedächtnis)
 // ══════════════════════════════════
+const STORAGE_KEY_PREFIX = 'melih_training_';
 const DB={
-  get:k=>{try{return JSON.parse(localStorage.getItem(k));}catch{return null;}},
-  set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},
+  get:k=>{
+    try{
+      // Versuche zuerst mit Prefix, dann ohne (Migration)
+      let data = localStorage.getItem(STORAGE_KEY_PREFIX + k);
+      if(!data) data = localStorage.getItem(k);
+      if(data) {
+        // Speichere mit neuem Prefix falls nötig
+        if(!localStorage.getItem(STORAGE_KEY_PREFIX + k)) {
+          localStorage.setItem(STORAGE_KEY_PREFIX + k, data);
+        }
+        return JSON.parse(data);
+      }
+      return null;
+    }catch(e){console.error('DB.get error:',e);return null;}
+  },
+  set:(k,v)=>{
+    try{
+      const data = JSON.stringify(v);
+      localStorage.setItem(STORAGE_KEY_PREFIX + k, data);
+      localStorage.setItem(k, data); // Backup ohne Prefix
+      // Verifiziere dass es gespeichert wurde
+      const verify = localStorage.getItem(STORAGE_KEY_PREFIX + k);
+      if(!verify) console.warn('Speichern fehlgeschlagen für:', k);
+    }catch(e){console.error('DB.set error:',e);}
+  },
   days:()=>DB.get('mb_days')||{},
-  setDays:d=>DB.set('mb_days',d),
+  setDays:d=>{DB.set('mb_days',d);console.log('Training gespeichert:', Object.keys(d).length, 'Tage');},
   exData:(day,ex)=>{const d=DB.days();return(d[day]||{})[ex]||{history:[],note:''}},
   log:(day,ex,kg,reps,note)=>{
     const d=DB.days();
@@ -1873,6 +1897,29 @@ function saveModal(){
 // INIT
 // ══════════════════════════════════
 (function init(){
+  // Prüfe localStorage Verfügbarkeit
+  try {
+    localStorage.setItem('_test', '1');
+    localStorage.removeItem('_test');
+    console.log('✓ LocalStorage funktioniert');
+  } catch(e) {
+    console.error('✗ LocalStorage nicht verfügbar!');
+    alert('Warnung: Dein Browser unterstützt keine lokale Speicherung. Deine Trainingsdaten werden nicht gespeichert!');
+  }
+
+  // Lade gespeicherte Daten und zeige Info
+  const savedDays = DB.days();
+  const dayCount = Object.keys(savedDays).length;
+  let totalEntries = 0;
+  Object.values(savedDays).forEach(day => {
+    if(day && typeof day === 'object') {
+      Object.values(day).forEach(ex => {
+        if(ex && ex.history) totalEntries += ex.history.length;
+      });
+    }
+  });
+  console.log(`✓ ${totalEntries} Trainingseinträge geladen aus ${dayCount} Tagen`);
+
   DB.loadOv();
   // Streak display
   const streak=DB.streak();
